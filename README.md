@@ -1,5 +1,6 @@
 # Turn Based Combat Game [Test]
-[![Build status](https://ci.appveyor.com/api/github/webhook?id=w06nd3xepyqlqgj8?svg=true)](https://ci.appveyor.com/project/CadeXLegend/Turn_Based_Combat_Game-Test-)
+[![Build status](https://ci.appveyor.com/api/projects/status/hu0u621hm03h990r?svg=true)](https://ci.appveyor.com/project/CadeXLegend/Turn_Based_Combat_Game-Test-)
+
 My pet project.  This game is heavily inspired by the many RPGs I have played since childhood.
 
 Some of these include but are not limited to:
