@@ -9,8 +9,10 @@ Some of these include but are not limited to:
 * Invisible Inc
 * Final Fantasy
 
-##Battle Chasers: Night Wars
+## Battle Chasers: Night Wars
+
 ![](https://cdn.staticneo.com/ew/thumb/2/2a/Boss_-_Cdrall.jpg/662px-Boss_-_Cdrall.jpg)
 
-##Star Wars: Knights of the Old Republic
+## Star Wars: Knights of the Old Republic
+
 ![](https://cdn-images-1.medium.com/max/1200/1*7Qz_hlYjCteSsCKTz7hSMA.png)
