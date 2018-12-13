@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed51d0733da43844b82cdd1987808efa, type: 3}
+  m_Name: Forsaken Thrall
+  m_EditorClassIdentifier: 
+  entityName: Forsaken Thrall
+  entityDescription: A Servant left to die in the Timeless Lands.
+  health: 5
+  maxHealth: 5
+  mana: 5
+  maxMana: 5

@@ -1,0 +1,133 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="TurnBasedGame.UI.AbilitySlot">
+    <Position X="23.5" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAEAAAAAAAAAAAAAIAAAAAAAAgAAAAAQAAAQFAAEA=</HashCode>
+      <FileName>Assets\Scripts\AbilitySlot.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TurnBasedGame.Systems.PlayerAbilities">
+    <Position X="23.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAEE=</HashCode>
+      <FileName>Assets\Scripts\PlayerAbilities.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnBasedGame.UI.PopulateAbilitiesUI">
+    <Position X="11.5" Y="1.25" Width="2" />
+    <NestedTypes>
+      <Delegate Name="TurnBasedGame.UI.PopulateAbilitiesUI.PopulatedUI" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\PopulateAbilitiesUI.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAAAAAQAAAAAAAADAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\PopulateAbilitiesUI.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnBasedGame.UI.PopulateAbilityDescriptionUI">
+    <Position X="13.75" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAACAAAAAAAAAIACAAAACgAAAAAQAAAAEBAEA=</HashCode>
+      <FileName>Assets\Scripts\PopulateAbilityDescriptionUI.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TurnBasedGame.TurnManager">
+    <Position X="6" Y="6" Width="1.5" />
+    <NestedTypes>
+      <Delegate Name="TurnBasedGame.TurnManager.TurnPhase" Collapsed="true">
+        <TypeIdentifier>
+          <NewMemberFileName>Assets\Scripts\TurnManager.cs</NewMemberFileName>
+        </TypeIdentifier>
+      </Delegate>
+    </NestedTypes>
+    <TypeIdentifier>
+      <HashCode>AEgAAAAAAAAAAAAACAAAAAAAACAAACACAgAAAAAAAEA=</HashCode>
+      <FileName>Assets\Scripts\TurnManager.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="TurnBasedGame.UI.UIInteractionManager">
+    <Position X="16.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AEAAAAUAAAAAAAAAAAAAAAAEQAAAMAAAIAAAAQAAAEA=</HashCode>
+      <FileName>Assets\Scripts\UIInteractionManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="TurnBasedGame.Ability">
+    <Position X="21.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACCAEACAgAQggAAAIAAAABAAAAQQAAAAAQgAAAEoABA=</HashCode>
+      <FileName>Assets\Scripts\Scriptables\Ability.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="TurnBasedGame.Interfaces.IDataManagement">
+    <Position X="0.5" Y="2.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAAAAACAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.IFileManagement">
+    <Position X="0.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.IInventory">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAgAAAAAIAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.IInventoryInteractions">
+    <Position X="2.75" Y="0.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQEAAAAAAAAAQCAQAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.IActionManagement">
+    <Position X="0.5" Y="0.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAQARAAAAAAAAAAAAAAAABAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.ITurnManagement">
+    <Position X="4" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAgAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="TurnBasedGame.Interfaces.IPopulateUI">
+    <Position X="9.5" Y="1.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Assets\Scripts\ITurnBasedGame.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="TurnBasedGame.CombatTurns">
+    <Position X="4.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAgAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>Assets\Scripts\TurnManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="TurnBasedGame.AbilityType">
+    <Position X="20" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAAQCAQAAAgACAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Assets\Scripts\Scriptables\Ability.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
