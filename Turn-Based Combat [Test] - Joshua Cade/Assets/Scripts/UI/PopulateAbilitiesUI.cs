@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using TurnBasedGame.Systems;
+using System;
 
 namespace TurnBasedGame.UI
 {
@@ -33,17 +34,45 @@ namespace TurnBasedGame.UI
         /// </summary>
         private void GenerateAbilitiesInUI()
         {
-            foreach (Ability ab in PlayerAbilities.abilities.playerAbilities)
+            try
             {
-                go = Instantiate(abilitySlot, abilitySlotsSortingGroup.transform);
-                go.name = abilitySlot.name + string.Format(" ({0})", ab.AbilityName);
-                go.GetComponent<AbilitySlot>().ParseComponentsData(ab);
-
-                go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(
-                    delegate
+                foreach (Ability ab in PlayerAbilities.abilities.playerAbilities)
+                {
+                    try
                     {
-                        ActionManagement.management.QueueAction(UIInteractionManager.management.GetCurrentlySelectedAbility());
-                    });
+                        go = Instantiate(abilitySlot, abilitySlotsSortingGroup.transform);
+                        go.name = abilitySlot.name + string.Format(" ({0})", ab.AbilityName);
+                        go.GetComponent<AbilitySlot>().ParseComponentsData(ab);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+                    }
+
+                    try
+                    {
+                        go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(
+                        delegate
+                        {
+                            try
+                            {
+                                ActionManagement.management.QueueAction(UIInteractionManager.management.GetCurrentlySelectedAbility());
+                            }
+                            catch (Exception e)
+                            {
+                                Debug.Log("<color=red><b>Error: </b></color>" + e);
+                            }
+                        });
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.Log("<color=red><b>Error: </b></color>" + e);
             }
 
             OnceUIPopulated();
