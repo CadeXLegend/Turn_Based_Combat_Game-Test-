@@ -22,7 +22,27 @@ namespace TurnBasedGame.Systems
 
         #region Variables
         [SerializeField]
+        private List<Ability> abilitiesDatabase = new List<Ability>();
+
+        [SerializeField]
         internal List<Ability> playerAbilities = new List<Ability>();
+        #endregion
+
+        #region Methods
+        /// <summary>
+        /// Returns the Abilities Database Object.
+        /// </summary>
+        /// <returns></returns>
+        public List<Ability> AbilityDatabase()
+        {
+            if (abilitiesDatabase.Count <= 0)
+            {
+                Debug.Log("<color=red><b>Warning: </b></color>Ability Database is not populated.");
+                return new List<Ability>();
+            }
+            else
+                return abilitiesDatabase;
+        }
         #endregion
     }
 }

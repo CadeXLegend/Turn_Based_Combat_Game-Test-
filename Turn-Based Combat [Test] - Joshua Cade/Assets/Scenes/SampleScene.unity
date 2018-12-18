@@ -3137,6 +3137,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b6582246f2338c9439e5d10134f7af24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  abilitiesDatabase:
+  - {fileID: 11400000, guid: 4fbb70f5c66e0e74c996bd0209879aee, type: 2}
+  - {fileID: 11400000, guid: 2032452e942778d45be10c22ab21368f, type: 2}
+  - {fileID: 11400000, guid: 70ca88a44290bb0498a7ca586a47917c, type: 2}
+  - {fileID: 11400000, guid: e1869e9c648e9cb47b290c18a414efae, type: 2}
   playerAbilities:
   - {fileID: 11400000, guid: 70ca88a44290bb0498a7ca586a47917c, type: 2}
   - {fileID: 11400000, guid: 2032452e942778d45be10c22ab21368f, type: 2}
