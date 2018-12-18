@@ -5,6 +5,9 @@ using System;
 
 namespace TurnBasedGame.UI
 {
+    /// <summary>
+    /// Populates the Actions UI Field with Abilities.
+    /// </summary>
     internal class PopulateAbilitiesUI : MonoBehaviour
     {
         #region Variables

@@ -4,6 +4,9 @@ using UnityEngine.UI;
 
 namespace TurnBasedGame.UI
 {
+    /// <summary>
+    /// Populates the Descriptions UI Field with Ability Information.
+    /// </summary>
     internal class PopulateAbilityDescriptionUI : MonoBehaviour, Interfaces.IParseData
     {
         #region Singleton
@@ -52,6 +55,10 @@ namespace TurnBasedGame.UI
         #endregion
 
         #region Methods
+        /// <summary>
+        /// Parses the Data from the Ability to the Description UI Field.
+        /// </summary>
+        /// <param name="ability"></param>
         public void ParseComponentsData(Ability ability)
         {
             try
