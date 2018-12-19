@@ -59,7 +59,8 @@ namespace TurnBasedGame.UI
             {
                 case Entities.EntityType.Ally:
                     go = Instantiate(entityContainer, allyEntityParent.transform);
-                    Transform allyPortraitPos = go.transform.GetChild(1).transform;
+                    //transform for the icon
+                    Transform allyPortraitPos = go.transform.GetChild(2).transform;
                     //increasing the scale just to emphasize the player (temporary)
                     go.transform.localScale += new Vector3(0.2f, 0.2f);
                     //moving the icon to be appropriate for the UI (maybe temporary)
@@ -92,7 +93,7 @@ namespace TurnBasedGame.UI
             //Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
-            go.transform.GetChild(1).GetComponent<Image>().sprite = entity.Icon;
+            go.transform.GetChild(2).GetComponent<Image>().sprite = entity.Icon;
             #endregion
 
             #region Health Bar
@@ -100,10 +101,21 @@ namespace TurnBasedGame.UI
             //Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
-            Slider slider = go.transform.GetChild(0).GetComponent<Slider>();
-            slider.maxValue = entity.MaxHealth;
-            slider.value = entity.Health;
-            go.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = slider.value + "/" + slider.maxValue;
+            Slider healthSlider = go.transform.GetChild(0).GetComponent<Slider>();
+            healthSlider.maxValue = entity.MaxHealth;
+            healthSlider.value = entity.Health;
+            go.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = healthSlider.value + "/" + healthSlider.maxValue;
+            #endregion
+
+            #region Mana Bar
+            //This is dependant on the heirarchy of the
+            //Entity Container Object.
+            //Any changes to the heirarchy will break this code.
+            //Please be aware of this fact before changing the saved Prefab.
+            Slider manaSlider = go.transform.GetChild(1).GetComponent<Slider>();
+            manaSlider.maxValue = entity.MaxMana;
+            manaSlider.value = entity.Mana;
+            go.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = manaSlider.value + "/" + manaSlider.maxValue;
             #endregion
         }
         #endregion
