@@ -19,5 +19,22 @@ namespace TurnBasedGame.Entities
             Debug.Assert(entity, "<color=red><b>Warning: </b></color> No Entity has been Assigned.");
         }
         #endregion
+
+        # region Methods
+        /// <summary>
+        /// Returns the Entity bound to this Container.
+        /// </summary>
+        /// <returns></returns>
+        public Entity RetreiveEntity()
+        {
+            if(entity != null)
+                return entity;
+            else
+            {
+                Debug.Log("<color=red><b>Warning: </b></color>No Entity has been bound to this Container.");
+                return ScriptableObject.CreateInstance<Entity>();
+            }
+        }
+        #endregion
     }
 }

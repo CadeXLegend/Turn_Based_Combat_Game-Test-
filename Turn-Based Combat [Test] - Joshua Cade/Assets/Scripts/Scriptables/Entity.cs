@@ -2,6 +2,10 @@
 
 namespace TurnBasedGame.Entities
 {
+    public enum EntityType
+    {
+        Ally, Enemy
+    }
     /// <summary>
     /// The Base Data Asset used to Create Entities.
     /// </summary>
@@ -10,6 +14,28 @@ namespace TurnBasedGame.Entities
     {
         #region Variables
         [Header("Primary Attributes")]
+
+        [SerializeField]
+        [Tooltip("The desired Icon for the Entity.")]
+        private Sprite icon;
+        public Sprite Icon
+        {
+            get
+            {
+                return icon;
+            }
+        }
+
+        [SerializeField]
+        [Tooltip("The desired Type of Entity.")]
+        private EntityType entityType;
+        public EntityType EntityType
+        {
+            get
+            {
+                return entityType;
+            }
+        }
 
         [SerializeField]
         [Tooltip("The desired Name of the Entity.")]
