@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.UI;
 
 namespace TurnBasedGame.UI
@@ -41,7 +42,14 @@ namespace TurnBasedGame.UI
             //fetches every container in the GameObject Scene.
             foreach (Entities.EntityContainer containers in (Entities.EntityContainer[])FindObjectsOfType(typeof(Entities.EntityContainer)))
             {
-                GenerateUIElements(containers.RetreiveEntity());
+                try
+                {
+                    GenerateUIElements(containers.RetreiveEntity());
+                }
+                catch (Exception e)
+                {
+                    Debug.Log("<color=red><b>Error: </b></color>" + e);
+                }
             }
 
         }
@@ -58,22 +66,53 @@ namespace TurnBasedGame.UI
             switch(entity.EntityType)
             {
                 case Entities.EntityType.Ally:
-                    go = Instantiate(entityContainer, allyEntityParent.transform);
-                    //transform for the icon
-                    Transform allyPortraitPos = go.transform.GetChild(2).transform;
-                    //increasing the scale just to emphasize the player (temporary)
-                    go.transform.localScale += new Vector3(0.2f, 0.2f);
-                    //moving the icon to be appropriate for the UI (maybe temporary)
-                    allyPortraitPos.localPosition = new Vector3(
-                        (-151), 
-                        allyPortraitPos.localPosition.y, 
-                        allyPortraitPos.localPosition.z);
-                    PopulateEntityInformation(entity, go);
+                    try
+                    {
+                        go = Instantiate(entityContainer, allyEntityParent.transform);
+                        //transform for the icon
+                        Transform allyPortraitPos = go.transform.GetChild(2).transform;
+                        //increasing the scale just to emphasize the player (temporary)
+                        go.transform.localScale += new Vector3(0.2f, 0.2f);
+                        //moving the icon to be appropriate for the UI (maybe temporary)
+                        allyPortraitPos.localPosition = new Vector3(
+                            (-151),
+                            allyPortraitPos.localPosition.y,
+                            allyPortraitPos.localPosition.z);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+
+                    }
+
+                    try
+                    {
+                        PopulateEntityInformation(entity, go);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+                    }
                     break;
 
                 case Entities.EntityType.Enemy:
-                    go = Instantiate(entityContainer, enemyEntityParent.transform);
-                    PopulateEntityInformation(entity, go);
+                    try
+                    {
+                        go = Instantiate(entityContainer, enemyEntityParent.transform);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+                    }
+
+                    try
+                    {
+                        PopulateEntityInformation(entity, go);
+                    }
+                    catch (Exception e)
+                    {
+                        Debug.Log("<color=red><b>Error: </b></color>" + e);
+                    }
                     break;
             }
 
@@ -93,7 +132,14 @@ namespace TurnBasedGame.UI
             //Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
-            go.transform.GetChild(2).GetComponent<Image>().sprite = entity.Icon;
+            try
+            {
+                go.transform.GetChild(2).GetComponent<Image>().sprite = entity.Icon;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("<color=red><b>Error: </b></color>" + e);
+            }
             #endregion
 
             #region Health Bar
@@ -101,10 +147,18 @@ namespace TurnBasedGame.UI
             //Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
-            Slider healthSlider = go.transform.GetChild(0).GetComponent<Slider>();
-            healthSlider.maxValue = entity.MaxHealth;
-            healthSlider.value = entity.Health;
-            go.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = healthSlider.value + "/" + healthSlider.maxValue;
+            try
+            {
+
+                Slider healthSlider = go.transform.GetChild(0).GetComponent<Slider>();
+                healthSlider.maxValue = entity.MaxHealth;
+                healthSlider.value = entity.Health;
+                go.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = healthSlider.value + "/" + healthSlider.maxValue;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("<color=red><b>Error: </b></color>" + e);
+            }
             #endregion
 
             #region Mana Bar
@@ -112,10 +166,17 @@ namespace TurnBasedGame.UI
             //Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
-            Slider manaSlider = go.transform.GetChild(1).GetComponent<Slider>();
-            manaSlider.maxValue = entity.MaxMana;
-            manaSlider.value = entity.Mana;
-            go.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = manaSlider.value + "/" + manaSlider.maxValue;
+            try
+            {
+                Slider manaSlider = go.transform.GetChild(1).GetComponent<Slider>();
+                manaSlider.maxValue = entity.MaxMana;
+                manaSlider.value = entity.Mana;
+                go.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = manaSlider.value + "/" + manaSlider.maxValue;
+            }
+            catch (Exception e)
+            {
+                Debug.Log("<color=red><b>Error: </b></color>" + e);
+            }
             #endregion
         }
         #endregion
