@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -57,9 +58,10 @@ namespace TurnBasedGame.Systems
         /// </summary>
         public void DeQueueAction()
         {
-            Destroy(generatedUIActions.Dequeue(), 0.2f);
-            targets.Dequeue();
-            actionsQueue.Dequeue();
+            if(targets.Count > 0)
+                targets.Dequeue();
+            if (actionsQueue.Count > 0)
+                actionsQueue.Dequeue();
         }
 
         /// <summary>
@@ -72,9 +74,13 @@ namespace TurnBasedGame.Systems
             {
                 try
                 {
-                    generatedUIActions.Enqueue(UI.PopulateQueuedActionsUI.management.GenerateAbilitiesInUI(action, target));
-                    actionsQueue.Enqueue(action);
-                    targets.Enqueue(target);
+                    GameObject generatedUI = UI.PopulateQueuedActionsUI.management.GenerateAbilitiesInUI(action, target);
+                    if(generatedUI != null)
+                        generatedUIActions.Enqueue(generatedUI);
+                    if(action != null)
+                        actionsQueue.Enqueue(action);
+                    if (target != null)
+                        targets.Enqueue(target);
                     Debug.Log("<color=green><b>Queued: </b></color>" + action.AbilityName);
                 }
                 catch (Exception e)
@@ -104,15 +110,19 @@ namespace TurnBasedGame.Systems
             }
         }
 
-        public void ResolveActionsInQueue()
+        private void ResolveActionsInQueue()
+        {
+            StartCoroutine(ResolveActions(1.2f));
+        }
+
+        private IEnumerator ResolveActions(float delay)
         {
             while (actionsQueue.Count > 0)
             {
-                for (int i = 0; i < actionsQueue.Count;)
-                {
-                    ResolveAction(actionsQueue.Peek(), targets.Peek());
-                    break;
-                }
+                if(generatedUIActions.Count > 0)
+                    Destroy(generatedUIActions.Dequeue());
+                ResolveAction(actionsQueue.Peek(), targets.Peek());
+                yield return new WaitForSeconds(delay);
                 DeQueueAction();
             }
         }
@@ -138,7 +148,7 @@ namespace TurnBasedGame.Systems
                         case AbilityType.Heal:
                             if (TurnManager.management.GetTurn() == CombatTurns.Player)
                                 Entities.Player.management.GetComponent<Entities.EntityContainer>().ChangeStat("Health", action.Healing, true);
-                            if(TurnManager.management.GetTurn() == CombatTurns.Enemy)
+                            if (TurnManager.management.GetTurn() == CombatTurns.Enemy)
                                 entities.Value.ChangeStat("Health", action.Healing, true);
                             break;
                         case AbilityType.Debuff:

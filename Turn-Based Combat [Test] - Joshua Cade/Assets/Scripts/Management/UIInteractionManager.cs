@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -34,6 +35,8 @@ namespace TurnBasedGame.UI
 
         public GameObject actionsMenuButtonsParent;
         private Ability currentAbility;
+        [SerializeField]
+        private GameObject endTurnButton;
         #endregion
 
         #region Methods
@@ -177,6 +180,8 @@ namespace TurnBasedGame.UI
             try
             {
                 TurnManager.management.SetTurn(CombatTurns.Enemy);
+                endTurnButton.GetComponent<Button>().interactable = false;
+                StartCoroutine(TESTResetTurn(3f));
             }
             catch (Exception e)
             {
@@ -203,5 +208,13 @@ namespace TurnBasedGame.UI
         }
         #endregion
 
+        private IEnumerator TESTResetTurn(float resetTime)
+        {
+            yield return new WaitForSeconds(resetTime);
+            TurnManager.management.SetTurn(CombatTurns.Player);
+            endTurnButton.GetComponent<Button>().interactable = true;
+            Entities.EntityContainer entityContainer = Entities.Player.management.GetComponent<Entities.EntityContainer>();
+            entityContainer.ChangeStat("Mana", entityContainer.RetreiveEntity().MaxMana, true);
+        }
     }
 }

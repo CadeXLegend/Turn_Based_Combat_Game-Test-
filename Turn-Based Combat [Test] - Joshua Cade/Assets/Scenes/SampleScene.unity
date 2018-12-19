@@ -113,6 +113,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &74035348 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1317277960515152, guid: 33655c0011eb0254aaaa14c171b62b8d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253135917}
 --- !u!1 &83933746
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   primaryAudioSource: {fileID: 83933748}
   actionsMenuButtonsParent: {fileID: 1924120093}
+  endTurnButton: {fileID: 74035348}
 --- !u!1 &136982341
 GameObject:
   m_ObjectHideFlags: 0
@@ -2685,6 +2691,21 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 83933749}
+    - target: {fileID: 114051270887759232, guid: 33655c0011eb0254aaaa14c171b62b8d,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.r
+      value: 0.047169805
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051270887759232, guid: 33655c0011eb0254aaaa14c171b62b8d,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.g
+      value: 0.047169805
+      objectReference: {fileID: 0}
+    - target: {fileID: 114051270887759232, guid: 33655c0011eb0254aaaa14c171b62b8d,
+        type: 2}
+      propertyPath: m_Colors.m_DisabledColor.b
+      value: 0.047169805
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33655c0011eb0254aaaa14c171b62b8d, type: 2}
   m_IsPrefabAsset: 0

@@ -67,7 +67,7 @@ namespace TurnBasedGame.Entities
         }
         #endregion
 
-        # region Methods
+        #region Methods
         /// <summary>
         /// Returns the Entity bound to this Container.
         /// </summary>
