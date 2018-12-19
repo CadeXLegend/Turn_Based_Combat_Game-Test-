@@ -53,6 +53,7 @@ namespace TurnBasedGame.UI
                 if (!Systems.ActionManagement.management.CheckIfFull())
                 {
                     go = Instantiate(actionGraphic, queuedAbilitiesSortingGroup.transform);
+                    go.name = ab.AbilityName + " (" + ab.Target.name + ")";
                     go.GetComponent<Image>().sprite = ab.Icon;
                 }
                 else

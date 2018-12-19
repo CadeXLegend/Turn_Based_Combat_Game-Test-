@@ -33,9 +33,9 @@ namespace TurnBasedGame.UI
             //This is specifically retreiving the components in this order per heirarchial setup of the "Slot" Prefab.
             //If you change how the Heirarchy is configured, this code will not work anymore!!
             //Modify at your own risk.
-            this.icon = transform.GetChild(1).GetComponent<Image>();
-            this.nameText = transform.GetChild(0).GetComponent<Text>();
-            this.costText = transform.GetChild(2).GetChild(0).GetComponent<Text>();
+            icon = transform.GetChild(1).GetComponent<Image>();
+            nameText = transform.GetChild(0).GetComponent<Text>();
+            costText = transform.GetChild(2).GetChild(0).GetComponent<Text>();
         }
 
         public override void OnPointerEnter(PointerEventData data)
@@ -47,6 +47,35 @@ namespace TurnBasedGame.UI
         public override void OnPointerExit(PointerEventData data)
         {
             PopulateAbilityDescriptionUI.modify.DescriptionBoxManager.SetActive(false);
+        }
+
+        public override void OnBeginDrag(PointerEventData eventData)
+        {
+            UIInteractionManager.management.SetCurrentlySelectedAbility(ability);
+            UIInteractionManager.management.DisableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
+        }
+
+        public override void OnEndDrag(PointerEventData eventData)
+        {
+            try
+            {
+                if (ability.AbilityType == AbilityType.Damage || ability.AbilityType == AbilityType.Debuff || ability.AbilityType == AbilityType.Hybrid)
+                {
+                    if (eventData.pointerCurrentRaycast.gameObject.tag == "Enemy")
+                    {
+                        ability.Target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+                        Debug.Log("<color=blue><b>Target: </b></color>" + ability.Target.name);
+                    }
+                }
+
+                if(ability.Target != null)
+                    Systems.ActionManagement.management.QueueAction(ability);
+            }
+            catch (Exception e)
+            {
+                Debug.Log("<color=red><b>Error: </b></color>" + e);
+            }
+            UIInteractionManager.management.EnableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
         }
         #endregion
 

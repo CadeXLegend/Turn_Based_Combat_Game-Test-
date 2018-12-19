@@ -250,6 +250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   primaryAudioSource: {fileID: 83933748}
+  actionsMenuButtonsParent: {fileID: 1924120093}
 --- !u!1 &136982341
 GameObject:
   m_ObjectHideFlags: 0
@@ -3700,6 +3701,11 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1890551446}
   m_CullTransparentMesh: 0
+--- !u!1 &1924120093 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1867453822299410, guid: 33655c0011eb0254aaaa14c171b62b8d,
+    type: 2}
+  m_PrefabInternal: {fileID: 1253135917}
 --- !u!4 &1959229179 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4497659384720172, guid: 33655c0011eb0254aaaa14c171b62b8d,

@@ -51,26 +51,6 @@ namespace TurnBasedGame.UI
                     {
                         Debug.Log("<color=red><b>Error: </b></color>" + e);
                     }
-
-                    try
-                    {
-                        go.GetComponent<UnityEngine.UI.Button>().onClick.AddListener(
-                        delegate
-                        {
-                            try
-                            {
-                                ActionManagement.management.QueueAction(UIInteractionManager.management.GetCurrentlySelectedAbility());
-                            }
-                            catch (Exception e)
-                            {
-                                Debug.Log("<color=red><b>Error: </b></color>" + e);
-                            }
-                        });
-                    }
-                    catch (Exception e)
-                    {
-                        Debug.Log("<color=red><b>Error: </b></color>" + e);
-                    }
                 }
             }
             catch (Exception e)

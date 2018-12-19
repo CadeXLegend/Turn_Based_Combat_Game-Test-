@@ -128,6 +128,22 @@ namespace TurnBasedGame
                 return effectDuration;
             }
         }
+
+        private GameObject target;
+        /// <summary>
+        /// The Ability's assigned Target.
+        /// </summary>
+        public GameObject Target
+        {
+            get
+            {
+                return target;
+            }
+            set
+            {
+                target = value;
+            }
+        }
         #endregion
 
         #region Constructor

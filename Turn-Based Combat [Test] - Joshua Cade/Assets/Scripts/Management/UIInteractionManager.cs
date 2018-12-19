@@ -31,6 +31,9 @@ namespace TurnBasedGame.UI
         [SerializeField]
         private AudioSource primaryAudioSource;
         public AudioSource externalAudioSource { get; set; }
+
+        public GameObject actionsMenuButtonsParent;
+        private Ability currentAbility;
         #endregion
 
         #region Methods
@@ -58,17 +61,18 @@ namespace TurnBasedGame.UI
         /// <returns></returns>
         public Ability GetCurrentlySelectedAbility()
         {
-            if (EventSystem.current)
-            {
-                return EventSystem.current.currentSelectedGameObject.GetComponent<AbilitySlot>().FetchAssignedAbility();
-            }
-            else
-            {
-                Debug.Log("<color=red><b>Warning: </b></color> <b>No Current EventSytem Object Actively Selected.</b>");
-                return null;
-            }
+            return currentAbility;
         }
 
+        /// <summary>
+        /// Parses the Current Ability attached to the Button's Action.
+        /// </summary>
+        /// <returns></returns>
+        public void SetCurrentlySelectedAbility(Ability ability)
+        {
+            currentAbility = ability;
+        }
+        
         /// <summary>
         /// Disables the Interactivity of the Buttons contained as children of obj.
         /// </summary>

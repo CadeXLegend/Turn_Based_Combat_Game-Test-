@@ -69,6 +69,7 @@ namespace TurnBasedGame.UI
                     try
                     {
                         go = Instantiate(entityContainer, allyEntityParent.transform);
+                        go.transform.GetChild(2).tag = "Ally";
                         //transform for the icon
                         Transform allyPortraitPos = go.transform.GetChild(2).transform;
                         //increasing the scale just to emphasize the player (temporary)
@@ -99,6 +100,7 @@ namespace TurnBasedGame.UI
                     try
                     {
                         go = Instantiate(entityContainer, enemyEntityParent.transform);
+                        go.transform.GetChild(2).tag = "Enemy";
                     }
                     catch (Exception e)
                     {
