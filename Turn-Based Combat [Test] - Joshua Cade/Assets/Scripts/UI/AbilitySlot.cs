@@ -67,9 +67,20 @@ namespace TurnBasedGame.UI
                         Debug.Log("<color=blue><b>Target: </b></color>" + ability.Target.name);
                     }
                 }
+                if(ability.AbilityType == AbilityType.Buff || ability.AbilityType == AbilityType.Heal)
+                {
+                    if (eventData.pointerCurrentRaycast.gameObject.tag == "Ally")
+                    {
+                        ability.Target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+                        Debug.Log("<color=blue><b>Target: </b></color>" + ability.Target.name);
+                    }
+                }
 
-                if(ability.Target != null)
+                if (ability.Target != null)
+                {
                     Systems.ActionManagement.management.QueueAction(ability);
+                    ability.Target = null;
+                }
             }
             catch (Exception e)
             {
