@@ -78,6 +78,9 @@ namespace TurnBasedGame.UI
 
                 if (ability.Target != null)
                 {
+                    //queue up the ability and bind it to QueuedAction,
+                    //then clear it from the ability's target so it won't
+                    //use the old Target and assign invalid Actions.
                     Systems.ActionManagement.management.QueueAction(ability);
                     ability.Target = null;
                 }
