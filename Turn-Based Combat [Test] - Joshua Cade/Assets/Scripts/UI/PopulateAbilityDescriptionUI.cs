@@ -63,10 +63,24 @@ namespace TurnBasedGame.UI
         {
             try
             {
-            icon.sprite = ability.Icon;
-            abilityNameText.text = ability.AbilityName;
-            costAndTypeText.text = string.Format("Mana: {0}\n{1}", ability.Cost, ability.AbilityType.ToString());
-            descriptionText.text = ability.Description;
+                icon.sprite = ability.Icon;
+                abilityNameText.text = ability.AbilityName;
+                costAndTypeText.text = string.Format("Mana: {0}\n{1}", ability.Cost, ability.AbilityType.ToString());
+                #region String Replacement(s)/Formatting
+                if (ability.Description.Contains("{Damage}"))
+                {
+                    ability.Description = ability.Description.Replace("{Damage}", ability.Damage.ToString());
+                }
+                if (ability.Description.Contains("{Healing}"))
+                {
+                    ability.Description = ability.Description.Replace("{Healing}", ability.Healing.ToString());
+                }
+                if (ability.Description.Contains("{EffectDuration}"))
+                {
+                    ability.Description = ability.Description.Replace("{EffectDuration}", ability.EffectDuration.ToString());
+                }
+                #endregion
+                descriptionText.text = ability.Description;
             }
             catch (Exception e)
             {

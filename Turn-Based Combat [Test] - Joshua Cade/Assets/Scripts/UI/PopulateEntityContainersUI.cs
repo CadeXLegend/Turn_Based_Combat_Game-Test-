@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -34,6 +35,8 @@ namespace TurnBasedGame.UI
 
         [SerializeField]
         private GameObject entityContainer;
+
+        public Dictionary<GameObject, Entities.EntityContainer> entitiesSpawned = new Dictionary<GameObject, Entities.EntityContainer>();
         #endregion
 
         #region Unity Methods
@@ -44,7 +47,7 @@ namespace TurnBasedGame.UI
             {
                 try
                 {
-                    GenerateUIElements(containers.RetreiveEntity());
+                    entitiesSpawned.Add(GenerateUIElements(containers, containers.RetreiveEntity()), containers);
                 }
                 catch (Exception e)
                 {
@@ -61,7 +64,7 @@ namespace TurnBasedGame.UI
         /// Generate the Entity Containers in the Entity Parent(s).
         /// </summary>
         /// <param name="entity"></param>
-        public void GenerateUIElements(Entities.Entity entity)
+        public GameObject GenerateUIElements(Entities.EntityContainer container, Entities.Entity entity)
         {
             switch(entity.EntityType)
             {
@@ -83,18 +86,19 @@ namespace TurnBasedGame.UI
                     catch (Exception e)
                     {
                         Debug.Log("<color=red><b>Error: </b></color>" + e);
-
+                        return null;
                     }
 
                     try
                     {
-                        PopulateEntityInformation(entity, go);
+                        PopulateEntityInformation(container, entity, go);
                     }
                     catch (Exception e)
                     {
                         Debug.Log("<color=red><b>Error: </b></color>" + e);
+                        return null;
                     }
-                    break;
+                    return go;
 
                 case Entities.EntityType.Enemy:
                     try
@@ -105,17 +109,21 @@ namespace TurnBasedGame.UI
                     catch (Exception e)
                     {
                         Debug.Log("<color=red><b>Error: </b></color>" + e);
+                        return null;
                     }
 
                     try
                     {
-                        PopulateEntityInformation(entity, go);
+                        PopulateEntityInformation(container, entity, go);
                     }
                     catch (Exception e)
                     {
                         Debug.Log("<color=red><b>Error: </b></color>" + e);
+                        return null;
                     }
-                    break;
+                    return go;
+                default:
+                    return null;
             }
 
         }
@@ -125,7 +133,7 @@ namespace TurnBasedGame.UI
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="go"></param>
-        private void PopulateEntityInformation(Entities.Entity entity, GameObject go)
+        private void PopulateEntityInformation(Entities.EntityContainer container, Entities.Entity entity, GameObject go)
         {
             go.name = entity.EntityName;
 
@@ -155,7 +163,10 @@ namespace TurnBasedGame.UI
                 Slider healthSlider = go.transform.GetChild(0).GetComponent<Slider>();
                 healthSlider.maxValue = entity.MaxHealth;
                 healthSlider.value = entity.Health;
-                go.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = healthSlider.value + "/" + healthSlider.maxValue;
+                Text healthText = go.transform.GetChild(0).GetChild(2).GetComponent<Text>();
+                healthText.text = healthSlider.value + "/" + healthSlider.maxValue;
+                container.HealthSlider = healthSlider;
+                container.HealthText = healthText;
             }
             catch (Exception e)
             {
@@ -173,7 +184,10 @@ namespace TurnBasedGame.UI
                 Slider manaSlider = go.transform.GetChild(1).GetComponent<Slider>();
                 manaSlider.maxValue = entity.MaxMana;
                 manaSlider.value = entity.Mana;
-                go.transform.GetChild(1).GetChild(2).GetComponent<Text>().text = manaSlider.value + "/" + manaSlider.maxValue;
+                Text manaText = go.transform.GetChild(1).GetChild(2).GetComponent<Text>();
+                manaText.text = manaSlider.value + "/" + manaSlider.maxValue;
+                container.ManaSlider = manaSlider;
+                container.ManaText = manaText;
             }
             catch (Exception e)
             {

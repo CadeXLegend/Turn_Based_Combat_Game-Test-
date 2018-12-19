@@ -176,15 +176,12 @@ namespace TurnBasedGame.UI
         {
             try
             {
-
+                TurnManager.management.SetTurn(CombatTurns.Enemy);
             }
             catch (Exception e)
             {
                 Debug.Log("<color=red><b>Error: </b></color>" + e);
             }
-
-            Debug.Log("<color=blue><b>Notification: </b></color><b>The Implementation for this Interaction is yet to be implemented.</b>");
-            //insert code here
         }
 
         /// <summary>

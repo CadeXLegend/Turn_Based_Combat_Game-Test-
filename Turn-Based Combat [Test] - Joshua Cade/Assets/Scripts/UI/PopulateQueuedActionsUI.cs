@@ -46,24 +46,27 @@ namespace TurnBasedGame.UI
         /// <summary>
         /// Adds Abilities as a Queued Actions UI Element.
         /// </summary>
-        public void GenerateAbilitiesInUI(Ability ab)
+        public GameObject GenerateAbilitiesInUI(Ability ab, GameObject target)
         {
             try
             {
                 if (!Systems.ActionManagement.management.CheckIfFull())
                 {
                     go = Instantiate(actionGraphic, queuedAbilitiesSortingGroup.transform);
-                    go.name = ab.AbilityName + " (" + ab.Target.name + ")";
+                    go.name = ab.AbilityName + " (" + target.name + ")";
                     go.GetComponent<Image>().sprite = ab.Icon;
+                    return go;
                 }
                 else
                 {
                     Debug.Log("<b>Actions Queue is Full.</b>");
+                    return null;
                 }
             }
             catch (Exception e)
             {
                 Debug.Log("<color=red><b>Error: </b></color>" + e);
+                return null;
             }
 
             //OnceUIPopulated();

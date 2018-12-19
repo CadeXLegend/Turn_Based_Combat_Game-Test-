@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -51,45 +52,60 @@ namespace TurnBasedGame.UI
 
         public override void OnBeginDrag(PointerEventData eventData)
         {
-            UIInteractionManager.management.SetCurrentlySelectedAbility(ability);
-            UIInteractionManager.management.DisableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
+            if (TurnManager.management.GetTurn() == CombatTurns.Player)
+            {
+                UIInteractionManager.management.SetCurrentlySelectedAbility(ability);
+                UIInteractionManager.management.DisableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
+            }
         }
 
         public override void OnEndDrag(PointerEventData eventData)
         {
             try
             {
-                if (ability.AbilityType == AbilityType.Damage || ability.AbilityType == AbilityType.Debuff || ability.AbilityType == AbilityType.Hybrid)
+                if (TurnManager.management.GetTurn() == CombatTurns.Player)
                 {
-                    if (eventData.pointerCurrentRaycast.gameObject.tag == "Enemy")
+                    GameObject target = Entities.Player.management.GetComponent<Entities.EntityContainer>().Target;
+                    if (ability.AbilityType == AbilityType.Damage || ability.AbilityType == AbilityType.Debuff || ability.AbilityType == AbilityType.Hybrid)
                     {
-                        ability.Target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-                        Debug.Log("<color=blue><b>Target: </b></color>" + ability.Target.name);
+                        if (eventData.pointerCurrentRaycast.gameObject.tag == "Enemy")
+                        {
+                            target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+                            Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
+                        }
                     }
-                }
-                if(ability.AbilityType == AbilityType.Buff || ability.AbilityType == AbilityType.Heal)
-                {
-                    if (eventData.pointerCurrentRaycast.gameObject.tag == "Ally")
+                    if (ability.AbilityType == AbilityType.Buff || ability.AbilityType == AbilityType.Heal)
                     {
-                        ability.Target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-                        Debug.Log("<color=blue><b>Target: </b></color>" + ability.Target.name);
+                        if (eventData.pointerCurrentRaycast.gameObject.tag == "Ally")
+                        {
+                            target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
+                            Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
+                        }
                     }
-                }
 
-                if (ability.Target != null)
-                {
-                    //queue up the ability and bind it to QueuedAction,
-                    //then clear it from the ability's target so it won't
-                    //use the old Target and assign invalid Actions.
-                    Systems.ActionManagement.management.QueueAction(ability);
-                    ability.Target = null;
+                    if (target != null)
+                    {
+                        //queue up the ability and bind it to QueuedAction,
+                        //then clear it from the ability's target so it won't
+                        //use the old Target and assign invalid Actions.
+                        if (Entities.Player.management.GetComponent<Entities.EntityContainer>().Mana >= ability.Cost)
+                        {
+                            Systems.ActionManagement.management.QueueAction(ability, target);
+                            Entities.Player.management.GetComponent<Entities.EntityContainer>().ChangeStat("Mana", ability.Cost, false);
+                        }
+                        else
+                        {
+                            Debug.Log("<color=red><b>Alert: </b></color>Not enough Mana to use Selected Ability.");
+                        }
+                    }
+                    UIInteractionManager.management.EnableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
+                    target = null;
                 }
             }
             catch (Exception e)
             {
                 Debug.Log("<color=red><b>Error: </b></color>" + e);
             }
-            UIInteractionManager.management.EnableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
         }
         #endregion
 

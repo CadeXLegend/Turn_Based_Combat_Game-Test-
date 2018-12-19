@@ -2660,7 +2660,12 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 83933749}
-    - target: {fileID: 114163601661770680, guid: 33655c0011eb0254aaaa14c171b62b8d,
+    - target: {fileID: 223355547949350872, guid: 33655c0011eb0254aaaa14c171b62b8d,
+        type: 2}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 114717274730801850, guid: 33655c0011eb0254aaaa14c171b62b8d,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -2670,16 +2675,16 @@ Prefab:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 83933749}
-    - target: {fileID: 114717274730801850, guid: 33655c0011eb0254aaaa14c171b62b8d,
+    - target: {fileID: 114163601661770680, guid: 33655c0011eb0254aaaa14c171b62b8d,
         type: 2}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 83933749}
-    - target: {fileID: 223355547949350872, guid: 33655c0011eb0254aaaa14c171b62b8d,
+    - target: {fileID: 114595573100422854, guid: 33655c0011eb0254aaaa14c171b62b8d,
         type: 2}
-      propertyPath: m_Camera
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 519420031}
+      objectReference: {fileID: 83933749}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 33655c0011eb0254aaaa14c171b62b8d, type: 2}
   m_IsPrefabAsset: 0
@@ -3008,9 +3013,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1365331449}
   - component: {fileID: 1365331450}
+  - component: {fileID: 1365331451}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3040,6 +3046,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: 97d02c3c81da9074a8948d73c1d17b5b, type: 2}
+--- !u!114 &1365331451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1365331448}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7503c3ea01b6584cb5e1a5a7b39632b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1412178231
 GameObject:
   m_ObjectHideFlags: 0

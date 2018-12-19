@@ -55,6 +55,10 @@ namespace TurnBasedGame
             {
                 return description;
             }
+            set
+            {
+                description = value;
+            }
         }
 
         [SerializeField]

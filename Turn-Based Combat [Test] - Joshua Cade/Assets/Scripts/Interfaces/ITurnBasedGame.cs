@@ -1,4 +1,6 @@
-﻿namespace TurnBasedGame.Interfaces
+﻿using UnityEngine;
+
+namespace TurnBasedGame.Interfaces
 {
     #region Data & File Management (Saving, etc)
     /// <summary>
@@ -64,11 +66,11 @@
     /// </summary>
     internal interface IActionManagement
     {
-        void QueueAction(Ability action);
+        void QueueAction(Ability action, GameObject target);
 
         void DeQueueAction();
 
-        //bool ResolveAction(Ability action);
+        void ResolveAction(Ability action, GameObject target);
 
         void CancelAction(string action);
 
