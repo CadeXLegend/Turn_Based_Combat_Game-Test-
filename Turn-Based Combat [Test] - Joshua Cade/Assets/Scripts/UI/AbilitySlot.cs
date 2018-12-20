@@ -72,7 +72,7 @@ namespace TurnBasedGame.UI
                         if (eventData.pointerCurrentRaycast.gameObject.tag == "Enemy")
                         {
                             target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-                            Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
+                            //Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
                         }
                     }
                     if (ability.AbilityType == AbilityType.Buff || ability.AbilityType == AbilityType.Heal)
@@ -80,7 +80,7 @@ namespace TurnBasedGame.UI
                         if (eventData.pointerCurrentRaycast.gameObject.tag == "Ally")
                         {
                             target = eventData.pointerCurrentRaycast.gameObject.transform.parent.gameObject;
-                            Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
+                            //Debug.Log("<color=blue><b>Target: </b></color>" + target.name);
                         }
                     }
 
@@ -95,7 +95,7 @@ namespace TurnBasedGame.UI
                         }
                         else
                         {
-                            Debug.Log("<color=red><b>Alert: </b></color>Not enough Mana to use Selected Ability.");
+                            //Debug.Log("<color=red><b>Alert: </b></color>Not enough Mana to use Selected Ability.");
                         }
                     }
                     UIInteractionManager.management.EnableButtons(UIInteractionManager.management.actionsMenuButtonsParent);
