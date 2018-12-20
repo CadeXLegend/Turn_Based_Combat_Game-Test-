@@ -1,9 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TurnBasedGame.Entities
 {
+    public enum StatusState
+    {
+        None, Stunned, Frozen, Burning, Enlightened, Healing
+    }
+
     /// <summary>
     /// The Standard Container for the Entities ScriptableObject.
     /// </summary>
@@ -50,6 +56,21 @@ namespace TurnBasedGame.Entities
 
         public Slider HealthSlider { get; set; }
         public Slider ManaSlider { get; set; }
+
+        public StatusState statusState { get; set; }
+
+        [SerializeField]
+        private string uniqueID;
+        /// <summary>
+        /// The Unique Identification for the Spawned Entity.
+        /// </summary>
+        public string UniqueID
+        {
+            get
+            {
+                return uniqueID;
+            }
+        }
         #endregion
 
         #region Unity Methods
@@ -107,6 +128,26 @@ namespace TurnBasedGame.Entities
                     Debug.Log("<color=red><b>Warning: </b></color>That stat does not exist or is invalid.");
                     break;
             }
+        }
+
+        /// <summary>
+        /// Generate a Public Identification String for the Spawned Entity.
+        /// </summary>
+        public string GenerateUniqueID()
+        {
+            uniqueID = string.Format("{0}", UnityEngine.Random.Range(0, int.MaxValue));
+
+            if (!UI.PopulateEntityContainersUI.populate.GeneratedIDs.Contains(uniqueID))
+            {
+                UI.PopulateEntityContainersUI.populate.GeneratedIDs.Add(uniqueID);
+                return UniqueID;
+            }
+            else
+            {
+                GenerateUniqueID();
+            }
+
+            return UniqueID;
         }
         #endregion
     }

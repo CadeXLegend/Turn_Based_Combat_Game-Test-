@@ -69,15 +69,26 @@ namespace TurnBasedGame.UI
                 #region String Replacement(s)/Formatting
                 if (ability.Description.Contains("{Damage}"))
                 {
-                    ability.Description = ability.Description.Replace("{Damage}", ability.Damage.ToString());
+                    ability.Description = ability.Description.Replace("{Damage}", 
+                        string.Format("<color=red><b>{0}</b></color>", ability.Damage.ToString()));
                 }
                 if (ability.Description.Contains("{Healing}"))
                 {
-                    ability.Description = ability.Description.Replace("{Healing}", ability.Healing.ToString());
+                    ability.Description = ability.Description.Replace("{Healing}", 
+                        string.Format("<color=green><b>{0}</b></color>", ability.Healing.ToString()));
                 }
                 if (ability.Description.Contains("{EffectDuration}"))
                 {
-                    ability.Description = ability.Description.Replace("{EffectDuration}", ability.EffectDuration.ToString());
+                    ability.Description = ability.Description.Replace("{EffectDuration}", 
+                        string.Format("<b>{0}</b>", ability.EffectDuration.ToString()));
+                }
+                foreach(string status in Enum.GetNames(typeof(Entities.StatusState)))
+                {
+                    if (ability.Description.Contains(status))
+                    {
+                        ability.Description = ability.Description.Replace(status,
+                        string.Format("<b>{0}</b>", status));
+                    }
                 }
                 #endregion
                 descriptionText.text = ability.Description;

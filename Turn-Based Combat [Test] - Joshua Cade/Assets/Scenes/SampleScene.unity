@@ -368,6 +368,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: 76a65f14f10e05042954b7bd5797194d, type: 2}
+  uniqueID: 
 --- !u!1 &153598680
 GameObject:
   m_ObjectHideFlags: 0
@@ -766,6 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: b6eb0464192623947a8f5fbe2c0df486, type: 2}
+  uniqueID: 
 --- !u!1 &347844850
 GameObject:
   m_ObjectHideFlags: 0
@@ -799,7 +801,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -387, y: 79.79999}
+  m_AnchoredPosition: {x: -387, y: 79.799805}
   m_SizeDelta: {x: -1192.7, y: -295.1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &347844852
@@ -1213,6 +1215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: 76a65f14f10e05042954b7bd5797194d, type: 2}
+  uniqueID: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -2585,7 +2588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 568, y: 79.20001}
+  m_AnchoredPosition: {x: 568, y: 79.200195}
   m_SizeDelta: {x: -1192.7, y: -298.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225608468
@@ -3067,6 +3070,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entity: {fileID: 11400000, guid: 97d02c3c81da9074a8948d73c1d17b5b, type: 2}
+  uniqueID: 
 --- !u!114 &1365331451
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3148,6 +3152,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e10aedd1613c9841bc916cd4c8469c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  GeneratedIDs: []
+  showEntityDebug: 0
   enemyEntityParent: {fileID: 1157461525}
   allyEntityParent: {fileID: 1344365082}
   entityContainer: {fileID: 1601012396127976, guid: b31d53de39caf814ead526db51e808a7,
@@ -3794,10 +3800,10 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 2032452e942778d45be10c22ab21368f, type: 2}
   - {fileID: 11400000, guid: 70ca88a44290bb0498a7ca586a47917c, type: 2}
   - {fileID: 11400000, guid: e1869e9c648e9cb47b290c18a414efae, type: 2}
+  - {fileID: 11400000, guid: 23219429639dc784593c7b73e109a27f, type: 2}
   playerAbilities:
   - {fileID: 11400000, guid: 70ca88a44290bb0498a7ca586a47917c, type: 2}
   - {fileID: 11400000, guid: 2032452e942778d45be10c22ab21368f, type: 2}
-  - {fileID: 11400000, guid: e1869e9c648e9cb47b290c18a414efae, type: 2}
   - {fileID: 11400000, guid: 4fbb70f5c66e0e74c996bd0209879aee, type: 2}
 --- !u!1 &2128158622
 GameObject:

@@ -28,6 +28,11 @@ namespace TurnBasedGame.UI
         #endregion
 
         #region Variables
+        public List<string> GeneratedIDs = new List<string>();
+
+        [SerializeField]
+        private bool showEntityDebug;
+
         [SerializeField]
         private GameObject enemyEntityParent;
         [SerializeField]
@@ -72,6 +77,7 @@ namespace TurnBasedGame.UI
                     try
                     {
                         go = Instantiate(entityContainer, allyEntityParent.transform);
+                        go.transform.tag = "Ally";
                         go.transform.GetChild(2).tag = "Ally";
                         //transform for the icon
                         Transform allyPortraitPos = go.transform.GetChild(2).transform;
@@ -104,6 +110,7 @@ namespace TurnBasedGame.UI
                     try
                     {
                         go = Instantiate(entityContainer, enemyEntityParent.transform);
+                        go.transform.tag = "Enemy";
                         go.transform.GetChild(2).tag = "Enemy";
                     }
                     catch (Exception e)
@@ -135,11 +142,25 @@ namespace TurnBasedGame.UI
         /// <param name="go"></param>
         private void PopulateEntityInformation(Entities.EntityContainer container, Entities.Entity entity, GameObject go)
         {
+            #region Entity #Generate Configuration
+            //assign all of the core, basic information to the created Entity
             go.name = entity.EntityName;
+            container.gameObject.name = entity.EntityName;
+            Entities.SpawnedContainer spawnedContainer = go.GetComponent<Entities.SpawnedContainer>();
+            spawnedContainer.GeneratedID = container.GenerateUniqueID();
+            spawnedContainer.entityParent = container.gameObject;
+
+            //log out all the information of the created Entity
+            //if enabled to show the debug
+            if (showEntityDebug)
+            {
+                Debug.Log(string.Format("<color=blue><b>Entity Generated: </b></color> \n<b>Name:</b> {0}\n<b>ID:</b> {1}\n<b>Parent:</b> {2}",
+                        entity.EntityName, spawnedContainer.GeneratedID, spawnedContainer.entityParent));
+            }
+            #endregion
 
             #region Icon
-            //This is dependant on the heirarchy of the
-            //Entity Container Object.
+            //This is dependant on the heirarchy of the Entity Container Object.
             //Any changes to the heirarchy will break this code.
             //Please be aware of this fact before changing the saved Prefab.
             try

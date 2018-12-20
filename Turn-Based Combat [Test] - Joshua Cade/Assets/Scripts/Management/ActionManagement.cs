@@ -33,6 +33,9 @@ namespace TurnBasedGame.Systems
         private Queue<GameObject> targets = new Queue<GameObject>();
 
         [SerializeField]
+        private bool showDebugLog;
+
+        [SerializeField]
         private int maxActionsInQueue = 5;
         #endregion
 
@@ -68,20 +71,22 @@ namespace TurnBasedGame.Systems
         /// Enqueue the Action into the Actions Queue.
         /// </summary>
         /// <param name="action"></param>
-        public void QueueAction(Ability action, GameObject target)
+        public void QueueAction(Ability action, GameObject target, GameObject caster)
         {
             if (!CheckIfFull())
             {
                 try
                 {
                     GameObject generatedUI = UI.PopulateQueuedActionsUI.management.GenerateAbilitiesInUI(action, target);
-                    if(generatedUI != null)
+                    caster.GetComponent<Entities.EntityContainer>().ChangeStat("Mana", action.Cost, false);
+                    if (generatedUI != null)
                         generatedUIActions.Enqueue(generatedUI);
                     if(action != null)
                         actionsQueue.Enqueue(action);
                     if (target != null)
                         targets.Enqueue(target);
-                    Debug.Log("<color=green><b>Queued: </b></color>" + action.AbilityName);
+                    if(showDebugLog)
+                        Debug.Log("<color=green><b>Queued: </b></color>" + action.AbilityName);
                 }
                 catch (Exception e)
                 {
@@ -90,7 +95,8 @@ namespace TurnBasedGame.Systems
             }
             else
             {
-                Debug.Log("<color=red><b>Could not Queue: </b></color>" + action.AbilityName);
+                if(showDebugLog)
+                    Debug.Log("<color=red><b>Could not Queue: </b></color>" + action.AbilityName);
             }
         }
 
@@ -138,7 +144,7 @@ namespace TurnBasedGame.Systems
             //but works for now!
             foreach (KeyValuePair<GameObject, Entities.EntityContainer> entities in UI.PopulateEntityContainersUI.populate.entitiesSpawned)
             {
-                if (entities.Key == target)
+                if (entities.Value.UniqueID == target.GetComponent<Entities.SpawnedContainer>().entityParent.GetComponent<Entities.EntityContainer>().UniqueID)
                 {
                     switch (action.AbilityType)
                     {
@@ -146,13 +152,15 @@ namespace TurnBasedGame.Systems
                             entities.Value.ChangeStat("Health", action.Damage, false);
                             break;
                         case AbilityType.Heal:
+                            /* I think this is unnecessary, why did I write it??
                             if (TurnManager.management.GetTurn() == CombatTurns.Player)
                                 Entities.Player.management.GetComponent<Entities.EntityContainer>().ChangeStat("Health", action.Healing, true);
                             if (TurnManager.management.GetTurn() == CombatTurns.Enemy)
+                            */
                                 entities.Value.ChangeStat("Health", action.Healing, true);
                             break;
                         case AbilityType.Debuff:
-                            //do nothing for now...
+                            target.GetComponent<Entities.SpawnedContainer>().entityParent.GetComponent<Entities.EntityContainer>().statusState = action.Effect;
                             break;
                         case AbilityType.Buff:
                             //also do nothing for now...

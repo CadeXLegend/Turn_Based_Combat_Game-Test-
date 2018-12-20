@@ -85,6 +85,9 @@ namespace TurnBasedGame
             }
         }
 
+        [Space(10)]
+        [Header("Statistic Modifiers")]
+
         [SerializeField]
         [Space(10)]
         [Tooltip("How much the Ability costs.")]
@@ -121,9 +124,24 @@ namespace TurnBasedGame
             }
         }
 
+        [Space(10)]
+        [Header("Ability Effect")]
+
         [SerializeField]
         [Space(10)]
-        [Tooltip("How long the Ability lasts for.")]
+        [Tooltip("What the Ability's Effect is.")]
+        private Entities.StatusState effect;
+        public Entities.StatusState Effect
+        {
+            get
+            {
+                return effect;
+            }
+        }
+
+        [SerializeField]
+        [Space(10)]
+        [Tooltip("How long the Ability's Effect lasts for.")]
         private int effectDuration;
         public int EffectDuration
         {

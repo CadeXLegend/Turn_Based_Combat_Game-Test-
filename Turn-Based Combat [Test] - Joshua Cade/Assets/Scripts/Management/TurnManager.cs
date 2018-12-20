@@ -26,9 +26,13 @@ namespace TurnBasedGame
             }
 
             management = this;
+            turnCount = 0;
 
-            TurnPhaseChanged += AuthorizeActions;
+            #region Event Subscriptions
+            TurnPhaseChanged += IncrementTurnCount;
+            TurnPhaseEnded += AuthorizeActions;
             UI.PopulateAbilitiesUI.OnceUIPopulated += SetDefaultTurn;
+            #endregion
         }
         #endregion
         #endregion
@@ -36,8 +40,28 @@ namespace TurnBasedGame
         #region Variables
         public delegate void TurnPhase();
         public event TurnPhase TurnPhaseChanged;
+        public event TurnPhase TurnPhaseEnded;
 
         private CombatTurns currentTurn;
+        public CombatTurns CurrentTurn
+        {
+            get
+            {
+                return currentTurn;
+            }
+        }
+
+        private int turnCount;
+        /// <summary>
+        /// The amount of turns that have Passed in the current Combat Phase.
+        /// </summary>
+        public int TurnCount
+        {
+            get
+            {
+                return turnCount;
+            }
+        }
         #endregion
 
         #region Methods
@@ -50,6 +74,11 @@ namespace TurnBasedGame
             return currentTurn;
         }
 
+        private void IncrementTurnCount()
+        {
+            turnCount++;
+        }
+
         /// <summary>
         /// Sets the turn to the Requested Turn State.
         /// </summary>
@@ -59,7 +88,10 @@ namespace TurnBasedGame
             try
             {
                 currentTurn = turn;
-                TurnPhaseChanged();
+                if(TurnPhaseChanged != null)
+                    TurnPhaseChanged();
+                if (TurnPhaseChanged != null)
+                    TurnPhaseEnded();
             }
             catch (Exception e)
             {
@@ -75,7 +107,8 @@ namespace TurnBasedGame
             try
             {
                 currentTurn = CombatTurns.Player;
-                TurnPhaseChanged();
+                if (TurnPhaseChanged != null)
+                    TurnPhaseChanged();
             }
             catch (Exception e)
             {
@@ -88,10 +121,18 @@ namespace TurnBasedGame
         /// </summary>
         private void AuthorizeActions()
         {
-            switch(currentTurn)
+            Entities.EntityContainer playerContainer = Entities.Player.access.GetComponent<Entities.EntityContainer>();
+            switch (currentTurn)
             {
                 case CombatTurns.Player:
-                    UI.UIInteractionManager.management.EnableButtons(GameObject.Find("Actions Button Grid Layout Group"));
+                    if (playerContainer.statusState != Entities.StatusState.Stunned)
+                    {
+                        UI.UIInteractionManager.management.EnableButtons(GameObject.Find("Actions Button Grid Layout Group"));
+                    }
+                    else
+                    {
+                        UI.UIInteractionManager.management.DisableButtons(GameObject.Find("Actions Button Grid Layout Group"));
+                    }
                     break;
 
                 case CombatTurns.Enemy:

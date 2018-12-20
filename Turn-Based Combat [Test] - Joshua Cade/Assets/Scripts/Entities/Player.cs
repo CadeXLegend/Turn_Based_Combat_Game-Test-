@@ -8,24 +8,23 @@ namespace TurnBasedGame.Entities
     internal class Player : MonoBehaviour
     {
         #region Singleton
-        public static Player management;
+        public static Player access;
 
         #region Unity Methods
         private void Awake()
         {
-            if (management != null)
+            if (access != null)
             {
-                Debug.Log("More than one {0} instance found!", management);
+                Debug.Log("More than one {0} instance found!", access);
                 return;
             }
 
-            management = this;
+            access = this;
         }
         #endregion
         #endregion
 
         #region Variables
-        ///empty for now...
         #endregion
 
         #region Unity Methods

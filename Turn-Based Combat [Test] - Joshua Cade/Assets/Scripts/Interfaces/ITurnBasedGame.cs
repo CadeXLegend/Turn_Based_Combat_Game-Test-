@@ -66,7 +66,7 @@ namespace TurnBasedGame.Interfaces
     /// </summary>
     internal interface IActionManagement
     {
-        void QueueAction(Ability action, GameObject target);
+        void QueueAction(Ability action, GameObject target, GameObject caster);
 
         void DeQueueAction();
 

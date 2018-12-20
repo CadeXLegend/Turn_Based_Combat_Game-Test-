@@ -63,9 +63,10 @@ namespace TurnBasedGame.UI
         {
             try
             {
-                if (TurnManager.management.GetTurn() == CombatTurns.Player)
+                Entities.EntityContainer entityContainerPlayer = Entities.Player.access.GetComponent<Entities.EntityContainer>();
+                if (TurnManager.management.GetTurn() == CombatTurns.Player && entityContainerPlayer.statusState != Entities.StatusState.Stunned)
                 {
-                    GameObject target = Entities.Player.management.GetComponent<Entities.EntityContainer>().Target;
+                    GameObject target = entityContainerPlayer.Target;
                     if (ability.AbilityType == AbilityType.Damage || ability.AbilityType == AbilityType.Debuff || ability.AbilityType == AbilityType.Hybrid)
                     {
                         if (eventData.pointerCurrentRaycast.gameObject.tag == "Enemy")
@@ -88,10 +89,9 @@ namespace TurnBasedGame.UI
                         //queue up the ability and bind it to QueuedAction,
                         //then clear it from the ability's target so it won't
                         //use the old Target and assign invalid Actions.
-                        if (Entities.Player.management.GetComponent<Entities.EntityContainer>().Mana >= ability.Cost)
+                        if (Entities.Player.access.GetComponent<Entities.EntityContainer>().Mana >= ability.Cost)
                         {
-                            Systems.ActionManagement.management.QueueAction(ability, target);
-                            Entities.Player.management.GetComponent<Entities.EntityContainer>().ChangeStat("Mana", ability.Cost, false);
+                            Systems.ActionManagement.management.QueueAction(ability, target, Entities.Player.access.gameObject);
                         }
                         else
                         {
